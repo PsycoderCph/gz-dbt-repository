@@ -51,6 +51,110 @@ sources:
             description: logistics cost for each order
           - name: ship_cost
             description: shipping cost for each order
+      - name: ads_adwords
+        identifier: raw_gz_adwords
+        description: campaigns on adwords/ one row per day with campaign key and name 
+        columns: 
+          - name: date_date
+            description: date 
+          - name: paid_source
+            description: campaign platform/ adwords
+          - name: campaign_key
+            description: key of the campaign
+          - name: camPGN_name
+            description: name of the campaign
+          - name: ads_cost
+            description: advertisement cost for the campaign on a specific day
+          - name: impression
+            description: number of impressions 
+          - name: click
+            description: number of clicks 
+      - name: ads_bing
+        identifier: raw_gz_bing
+        description: campaigns on bing/ one row per day with campaign key and name   
+        columns: 
+          - name: date_date
+            description: date 
+          - name: paid_source
+            description: campaign platform/ bing 
+          - name: campaign_key 
+            description: key of the campaign
+          - name: camPGN_name
+            description: name of the campaign
+          - name: ads_cost
+          - name: impression
+            description: number of impressions
+          - name: click
+            description: number of clicks 
+      - name: ads_criteo
+        identifier: raw_gz_criteo
+        description: campaigns on criteo/ one row per day with campaign key and name 
+        columns: 
+          - name: date_date
+            description: date
+          - name: paid_source
+            description: campaign platform/ bing 
+          - name: campaign_key 
+            description: key of the campaign 
+          - name: camPGN_name
+            description: name of the campaign
+          - name: ads_cost
+            description: advertisement cost for the campaign on a specific day
+          - name: impression
+            description: number of impressions
+          - name: click
+            description: number of clicks 
+      - name: ads_facebook
+        identifier: raw_gz_facebook
+        description: campaigns on facebook/ one row per day with campaign key and name
+        columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+            description: campaign platform/ bing 
+          - name: campaign_key 
+            description: key of the campaign 
+          - name: camPGN_name
+            description: name of the campaign
+          - name: ads_cost
+            description: advertisement cost for the campaign on a specific day
+          - name: impression
+            description: number of impressions
+          - name: click
+            description: number of clicks 
+
+models: 
+  - name: int_campaigns
+    tests:
+    - unique:
+        column_name: "(date_date || '-' || campaign_name)" 
+    - not_null: 
+        column_name: "(date_date || '-' || campaign_name)" 
+    columns:
+      - name: date_date
+        description: date
+      - name: paid_source
+        description: name of the advertisement source
+      - name: campaign_key
+        description: key for the campaign
+      - name: campaign_name
+        description: name of the campaign 
+      - name: ads_cost
+        description: cost of the campaign
+        data_tests:
+          - positive_values
+      - name: impression
+        description: number of impressions
+      - name: click 
+        description: number of clicks 
+    
+
+ 
+          
+
+
+          
+
 
 
 
